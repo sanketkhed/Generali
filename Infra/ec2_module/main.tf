@@ -12,10 +12,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "aws_sqs_queue" "queue1" {
-  name = var.sqs_name
-}
-
 resource "aws_instance" "instance1" {
   ami           = var.ami_id
   instance_type = var.instance_type
@@ -26,6 +22,3 @@ resource "aws_instance" "instance1" {
   }
 }
 
-resource "aws_sns_topic" "topic1" {
-  name = var.sns_topic_name
-}
