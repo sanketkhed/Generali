@@ -21,3 +21,12 @@ module "sns_module"{
 module "sqs_module"{
   sqs_name        = "dev-sqs-queue"
 }
+
+module "lambda" {
+  source          = "../../lambda_module"
+  function_name   = "dev-lambda"
+  runtime         = "python3.9"
+  handler         = "lambda_function.lambda_handler"
+  lambda_package  = "lambda/dev_lambda.zip"
+  sns_topic_arn   = module.ec2_sns_sms.sns_topic_arn
+}
