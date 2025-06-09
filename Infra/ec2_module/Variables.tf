@@ -20,13 +20,3 @@ variable "instance_name" {
   type        = string
 }
 
-variable "sns_topic_name" {
-  description = "Name of the SNS topic"
-  type        = string
-}
-
-variable "sqs_name" {
-  description = "Name of the SQS queue"
-  type        = string
-}
-
