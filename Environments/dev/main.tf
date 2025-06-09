@@ -6,7 +6,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "ec2_sns_sms" {
+module "ec2_sns_sqs_module" {
   source          = "../../ec2_sns_sms_module"
   aws_region      = "us-east-1"
   ami_id          = "ami-0abcdef1234567890"
