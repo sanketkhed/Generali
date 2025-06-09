@@ -7,7 +7,7 @@ provider "aws" {
 }
 
 module "ec2_module" {
-  source          = "../../ec2_sns_sqs_module"
+  source          = "../../ec2_module"
   aws_region      = "us-east-1"
   ami_id          = "ami-0abcdef1234567890"
   instance_type   = "t2.micro"
@@ -22,7 +22,7 @@ module "sqs_module"{
   sqs_name        = "dev-sqs-queue"
 }
 
-module "lambda" {
+module "lambda_module" {
   source          = "../../lambda_module"
   function_name   = "dev-lambda"
   runtime         = "python3.9"
