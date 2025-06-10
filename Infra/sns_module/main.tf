@@ -14,5 +14,6 @@ provider "aws" {
 }
 
 resource "aws_sns_topic" "topic1" {
-  name = var.sns_topic_name
+  count = var.enable_sns ? 1 : 0
+  name  = var.sns_topic_name
 }
