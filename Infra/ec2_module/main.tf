@@ -12,7 +12,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-# Combine all tags dynamically
 locals {
   dynamic_tags = merge(
     var.common_tags,
