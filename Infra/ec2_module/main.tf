@@ -20,10 +20,13 @@ resource "aws_instance" "instance1" {
     {
       Name = var.instance_name
     },
+    var.common_tags,
     var.enable_sqs ? {
       SQS_ARN_Tag = aws_sqs_queue.queue1[0].arn
-    } : {}
+    } : {},
+    { for key, value in var.extra_tags : key => value }
   )
 }
+
 
 
