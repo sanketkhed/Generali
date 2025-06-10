@@ -20,3 +20,9 @@ variable "instance_name" {
   type        = string
 }
 
+variable "add_sqs_tag" {
+  description = "Whether to add SQS_ARN_Tag"
+  type        = bool
+  default     = true
+}
+
