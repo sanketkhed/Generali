@@ -13,5 +13,6 @@ provider "aws" {
   region = var.aws_region
 }
 resource "aws_sqs_queue" "queue1" {
-  name = var.sqs_name
+  count = var.enable_sqs ? 1 : 0
+  name  = var.sqs_name
 }
