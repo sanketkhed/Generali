@@ -42,3 +42,15 @@ variable "extra_tags" {
   }
 }
 
+variable "sqs_name" {
+  description = "Name of the SQS queue"
+  type        = string
+}
+
+
+variable "enable_sqs" {
+  description = "Whether to create the SQS queue"
+  type        = bool
+  default     = false
+}
+
