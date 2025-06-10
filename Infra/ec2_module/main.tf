@@ -20,7 +20,7 @@ locals {
       Name = var.instance_name
     },
     var.enable_sqs && length(aws_sqs_queue.queue1) > 0 ? {
-      SQS_ARN_Tag = aws_sqs_queue.queue1[0].arn
+      SQS_ARN = aws_sqs_queue.queue1[0].arn
     } : {},
     { for key, value in var.extra_tags : key => value }
   )
@@ -33,5 +33,8 @@ resource "aws_instance" "instance1" {
   tags          = local.dynamic_tags
 }
 
-
-
+# Example SQS queue resource
+resource "aws_sqs_queue" "queue1" {
+  count = var.enable_sqs ? 1 : 0
+  name  = var.queue_name
+}
