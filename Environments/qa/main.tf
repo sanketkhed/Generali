@@ -2,14 +2,29 @@ provider "aws" {
   region = "us-east-2"
 }
 
+locals {
+  base_tags = merge(
+    var.common_tags,
+    {
+      Name = var.instance_name
+    },
+    var.enable_sqs && length(aws_sqs_queue.queue1) > 0 ? {
+      SQS_ARN = aws_sqs_queue.queue1[0].arn
+    } : {},
+    var.extra_tags
+  )
+}
+
 module "ec2_module" {
-  source          = "../../ec2_module"
-  aws_region      = "us-east-2"
-  ami_id          = "ami-0abcdef1234567890"
-  instance_type   = "t3.micro"
-  instance_name   = "qa-ec2"
-  
-  
+  source = "./modules/ec2_instance"
+
+  ami_id         = var.ami_id
+  instance_type  = var.instance_type
+  aws_region     = var.aws_region
+  enable_sqs     = var.enable_sqs
+  queue_name     = var.queue_name
+
+  tags = local.base_tags
 }
 
 module "sns_module"{
