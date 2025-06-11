@@ -25,3 +25,9 @@ variable "queue_name" {
   description = "Name of the SQS queue"
   type        = string
 }
+
+variable "instance_type" {
+  description = "The EC2 instance type to launch"
+  type        = string
+  default     = "t3.micro"
+}
