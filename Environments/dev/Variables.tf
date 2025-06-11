@@ -1,8 +1,3 @@
-variable "tags" {
-  description = "A map of tags to assign to resources"
-  type        = map(string)
-  default     = {}
-}
 
 variable "instance_name" {
   description = "Name tag for the EC2 instance"
@@ -24,5 +19,11 @@ variable "extra_tags" {
   default     = {
     Module = "ec2"
   }
+}
+
+variable "enable_sqs" {
+  description = "Whether to create the SQS queue"
+  type        = bool
+  default     = false
 }
 
