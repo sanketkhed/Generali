@@ -12,27 +12,13 @@ provider "aws" {
   region = var.aws_region
 }
 
-locals {
-  dynamic_tags = merge(
-    var.common_tags,
-    {
-      Name = var.instance_name
-    },
-    var.enable_sqs && length(aws_sqs_queue.queue1) > 0 ? {
-      SQS_ARN = aws_sqs_queue.queue1[0].arn
-    } : {},
-    { for key, value in var.extra_tags : key => value }
-  )
-}
-
-# EC2 instance using dynamic tags
+# Pass tags directly into the resource
 resource "aws_instance" "instance1" {
   ami           = var.ami_id
   instance_type = var.instance_type
-  tags          = local.dynamic_tags
+  tags          = var.tags
 }
 
-# Example SQS queue resource
 resource "aws_sqs_queue" "queue1" {
   count = var.enable_sqs ? 1 : 0
   name  = var.queue_name
