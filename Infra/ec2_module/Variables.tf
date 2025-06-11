@@ -21,3 +21,7 @@ variable "enable_sqs" {
   default     = false
 }
 
+variable "queue_name" {
+  description = "Name of the SQS queue"
+  type        = string
+}
