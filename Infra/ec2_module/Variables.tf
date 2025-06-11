@@ -32,22 +32,6 @@ variable "add_sqs_tag" {
   default     = true
 }
 
-variable "common_tags" {
-  description = "Common base tags applied to all resources"
-  type        = map(string)
-  default     = {
-    ManagedBy   = "terraform"
-  }
-}
-
-variable "extra_tags" {
-  description = "Extra dynamic tags"
-  type        = map(string)
-  default     = {
-    Module = "ec2"
-  }
-}
-
 variable "sqs_name" {
   description = "Name of the SQS queue"
   type        = string
