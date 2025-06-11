@@ -15,29 +15,6 @@ variable "ami_id" {
   type        = string
 }
 
-variable "instance_type" {
-  description = "EC2 instance type"
-  type        = string
-  default     = "t2.micro"
-}
-
-variable "instance_name" {
-  description = "Name tag for the EC2 instance"
-  type        = string
-}
-
-variable "add_sqs_tag" {
-  description = "Whether to add SQS_ARN_Tag"
-  type        = bool
-  default     = true
-}
-
-variable "sqs_name" {
-  description = "Name of the SQS queue"
-  type        = string
-}
-
-
 variable "enable_sqs" {
   description = "Whether to create the SQS queue"
   type        = bool
